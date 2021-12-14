@@ -2,6 +2,7 @@ package com.basaki.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Data;
 
 /**
@@ -12,16 +13,17 @@ import lombok.Data;
  * @since 11/23/17
  */
 @Data
-public class BookRequest {
+public class BookDTO {
 
     private String title;
 
-    private String author;
+    private AuthorDTO author;
 
     @JsonCreator
-    public BookRequest(@JsonProperty("title") String title,
-            @JsonProperty("author") String author) {
+    public BookDTO(@JsonProperty("title") String title,
+            @JsonProperty("author") AuthorDTO author) {
         this.title = title;
         this.author = author;
-    }
+    }  
+    
 }

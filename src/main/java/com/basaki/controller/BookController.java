@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.basaki.data.entity.Book;
-import com.basaki.model.BookRequest;
+import com.basaki.model.BookDTO;
 import com.basaki.service.BookService;
 
 import javassist.NotFoundException;
@@ -34,7 +34,7 @@ public class BookController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/books")
-	public Book create(@RequestBody BookRequest request) {
+	public Book create(@RequestBody BookDTO request) {
 		return service.create(request);
 	}
 

@@ -5,9 +5,12 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.basaki.data.entity.Author;
 import com.basaki.data.entity.Book;
 import com.basaki.data.repository.BookRepository;
-import com.basaki.model.BookRequest;
+import com.basaki.model.AuthorMapper;
+import com.basaki.model.BookDTO;
+import com.basaki.model.BookMapper;
 
 import javassist.NotFoundException;
 
@@ -22,18 +25,22 @@ import javassist.NotFoundException;
 public class BookService {
 
 	private BookRepository repository;
+	private BookMapper bookMapper;
+	private AuthorMapper authorMapper;
 
 	@Autowired
-	public BookService(BookRepository repository) {
+	public BookService(BookRepository repository, BookMapper bookMapper, AuthorMapper authorMapper) {
 		this.repository = repository;
+		this.bookMapper = bookMapper;
+		this.authorMapper = authorMapper;
 	}
 
-	public Book create(BookRequest request) {
-		Book entity = new Book();
-		entity.setTitle(request.getTitle());
-		entity.setAuthor(request.getAuthor());
+	public Book create(BookDTO request) {
+		Author author = authorMapper.dtoToEntity(request.getAuthor());
+		Book book = bookMapper.dtoToEntity(request);
+		book.setAuthor(author);
 
-		return repository.save(entity);
+		return repository.save(book);
 
 	}
 
