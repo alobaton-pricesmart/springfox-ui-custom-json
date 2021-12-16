@@ -1,7 +1,3 @@
-[![Build Status][travis-badge]][travis-badge-url]
-
-![](./img/x.png)
-
 SpringFox (Swagger) UI From JSON File Example
 =============================================
 This is an example on generating [SpringFox/Swagger](http://springfox.github.io/springfox/) 
